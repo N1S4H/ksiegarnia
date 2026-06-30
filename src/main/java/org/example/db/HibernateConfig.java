@@ -1,9 +1,8 @@
 package org.example.db;
 
 import lombok.Getter;
-import org.example.models.Rental;
+import org.example.models.Book;
 import org.example.models.User;
-import org.example.models.Vehicle;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -26,8 +25,8 @@ public class HibernateConfig {
             configuration.setProperty("hibernate.hbm2ddl.auto", "validate");
 
             configuration.addAnnotatedClass(User.class);
-            configuration.addAnnotatedClass(Vehicle.class);
-            configuration.addAnnotatedClass(Rental.class);
+            configuration.addAnnotatedClass(Book.class);
+
 
 
             sessionFactory = configuration.buildSessionFactory();

@@ -10,21 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserService {
     private final UserRepository userRepository;
-    private final RentalServiceInterface rentalService;
 
-    public UserService(UserRepository userRepository, RentalServiceInterface rentalService) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.rentalService = rentalService;
     }
 
     public void deleteUser(String targetUserId, String loggedInUserId) {
         if (targetUserId.equals(loggedInUserId)) {
             throw new IllegalStateException("Nie możesz usunąć samego siebie.");
-        }
-
-        boolean hasActiveRentals = rentalService.findActiveRentalByUserId(targetUserId).isPresent();
-        if (hasActiveRentals) {
-            throw new IllegalStateException("Nie można usunąć użytkownika, ponieważ ma wypożyczony pojazd.");
         }
 
         userRepository.deleteById(targetUserId);
