@@ -1,7 +1,10 @@
 spring:
   profiles:
-    active: ${APP_PROFILE:jpa}
+    active: jpa
 main:
   banner-mode: off
 server:
   port: 8080
+jwt:
+  secret: 5Sy1-R-Zj7ajgcabswkEttARiS8Q4Vs9IhYCVAt1bQ0
+  expiration: 3600000
